@@ -1,7 +1,7 @@
 
 %define plugin	epgsearch
 %define name	vdr-plugin-%plugin
-%define version	0.9.20
+%define version	0.9.21
 %define rel	1
 
 Summary:	VDR plugin: search the EPG for repeats and more
@@ -81,7 +81,7 @@ rm -rf %{buildroot}
 make install-doc MANDIR=%{buildroot}%{_mandir}
 
 install -d -m755 %{buildroot}%{_bindir}
-install -m755 scripts/sendEmail.pl %{buildroot}%{_bindir}
+install -m755 scripts/*.pl %{buildroot}%{_bindir}
 
 cat %plugin.vdr conflictcheckonly.vdr epgsearchonly.vdr quickepgsearch.vdr > combined.vdr
 
@@ -97,6 +97,9 @@ rm -rf %{buildroot}
 %files -f combined.vdr
 %defattr(-,root,root)
 %doc README* HISTORY* MANUAL* doc conf scripts
+%{_bindir}/autotimer2searchtimer.pl
+%{_bindir}/convert_epgsearchdone_data.pl
+%{_bindir}/convert_info_vdr.pl
 %{_bindir}/sendEmail.pl
 %{_mandir}/man1/createcats.1*
 %{_mandir}/man1/epgsearch.1*
@@ -105,5 +108,3 @@ rm -rf %{buildroot}
 %{_mandir}/man5/noannounce.conf.5*
 %{_mandir}/man5/timersdone.conf.5*
 %lang(de) %{_mandir}/de
-
-

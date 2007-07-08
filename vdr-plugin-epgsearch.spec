@@ -2,7 +2,7 @@
 %define plugin	epgsearch
 %define name	vdr-plugin-%plugin
 %define version	0.9.21
-%define rel	3
+%define rel	4
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name
@@ -42,6 +42,15 @@ additional functions:
 - support for extended EPG info for search timers
 - extension of the timer edit menu with a directory item, user
   defined weekday selection and a subtitle completion.
+
+%package -n %plugin-devel
+Summary:	Development headers of epgsearch VDR plugin
+Group:		Development/C++
+Requires:	vdr-devel
+
+%description -n %plugin-devel
+Headers for developing plugins that will use services provided by
+epgsearch.
 
 %prep
 %setup -q -n %plugin-%version
@@ -83,6 +92,9 @@ make install-doc MANDIR=%{buildroot}%{_mandir}
 install -d -m755 %{buildroot}%{_bindir}
 install -m755 scripts/*.pl %{buildroot}%{_bindir}
 
+install -d -m755 %{buildroot}%{_includedir}/vdr/%{plugin}
+install -m644 services.h %{buildroot}%{_includedir}/vdr/%{plugin}
+
 cat %plugin.vdr conflictcheckonly.vdr epgsearchonly.vdr quickepgsearch.vdr > combined.vdr
 
 %clean
@@ -108,3 +120,8 @@ rm -rf %{buildroot}
 %{_mandir}/man5/noannounce.conf.5*
 %{_mandir}/man5/timersdone.conf.5*
 %lang(de) %{_mandir}/de
+
+%files -n %plugin-devel
+%defattr(-,root,root)
+%{_includedir}/vdr/%{plugin}
+

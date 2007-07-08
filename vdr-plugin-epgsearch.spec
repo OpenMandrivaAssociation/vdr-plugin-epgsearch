@@ -2,7 +2,7 @@
 %define plugin	epgsearch
 %define name	vdr-plugin-%plugin
 %define version	0.9.21
-%define rel	4
+%define rel	5
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name

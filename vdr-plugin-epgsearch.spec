@@ -1,17 +1,17 @@
 
 %define plugin	epgsearch
 %define name	vdr-plugin-%plugin
-%define version	0.9.21
-%define rel	5
+%define version	0.9.23
+%define rel	1
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name
 Version:	%version
 Release:	%mkrel %rel
 Group:		Video
-License:	GPL
-URL:		http://people.freenet.de/cwieninger/html/vdr-epg-search__english_.html
-Source:		http://people.freenet.de/cwieninger/vdr-%plugin-%version.tar.bz2
+License:	GPL+
+URL:		http://winni.vdr-developer.org/epgsearch/index_eng.html
+Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.4.1-6
 Requires:	vdr-abi = %vdr_abi
@@ -81,6 +81,8 @@ param=--mailcmd=MAILCMD
 %vdr_plugin_params_end
 
 %build
+# -DUSE_GRAPHTFT needs alpha version of graphtft
+%define vdr_add_optflags -DUSE_PINPLUGIN
 %vdr_plugin_build
 
 %install

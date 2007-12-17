@@ -12,7 +12,6 @@ Group:		Video
 License:	GPL+
 URL:		http://winni.vdr-developer.org/epgsearch/index_eng.html
 Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.4.1-6
 Requires:	vdr-abi = %vdr_abi
 

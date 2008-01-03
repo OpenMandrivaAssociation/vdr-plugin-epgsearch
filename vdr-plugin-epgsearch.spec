@@ -13,7 +13,7 @@ License:	GPL+
 URL:		http://winni.vdr-developer.org/epgsearch/index_eng.html
 Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.4.1-6
+BuildRequires:	vdr-devel >= 1.4.7-9
 Requires:	vdr-abi = %vdr_abi
 
 %description
@@ -82,7 +82,7 @@ param=--mailcmd=MAILCMD
 
 %build
 # -DUSE_GRAPHTFT needs alpha version of graphtft
-%define vdr_add_optflags -DUSE_PINPLUGIN
+VDR_PLUGIN_FLAGS="%vdr_plugin_flags -DUSE_PINPLUGIN"
 %vdr_plugin_build
 
 %install

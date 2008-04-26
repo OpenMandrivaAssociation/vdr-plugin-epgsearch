@@ -1,19 +1,28 @@
 
 %define plugin	epgsearch
 %define name	vdr-plugin-%plugin
-%define version	0.9.23
-%define rel	3
+%define version	0.9.24
+%define prever	rc1
+%define rel	1
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name
 Version:	%version
+%if %prever
+Release:	%mkrel 0.%prever.%rel
+%else
 Release:	%mkrel %rel
+%endif
 Group:		Video
 License:	GPL+
 URL:		http://winni.vdr-developer.org/epgsearch/index_eng.html
+%if %prever
+Source:		vdr-%plugin-%version.%prever.tgz
+%else
 Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
+%endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.4.7-9
+BuildRequires:	vdr-devel >= 1.6.0
 Requires:	vdr-abi = %vdr_abi
 
 %description
@@ -53,7 +62,12 @@ Headers for developing plugins that will use services provided by
 epgsearch.
 
 %prep
+%if %prever
+%setup -q -n %plugin-%version.%prever
+%else
 %setup -q -n %plugin-%version
+%endif
+%vdr_plugin_prep
 
 chmod -x scripts/*.conf
 
@@ -82,7 +96,8 @@ param=--mailcmd=MAILCMD
 
 %build
 # -DUSE_GRAPHTFT needs alpha version of graphtft
-VDR_PLUGIN_FLAGS="%vdr_plugin_flags -DUSE_PINPLUGIN"
+# -DUSE_PINPLUGIN does not work with current pin patch
+#VDR_PLUGIN_FLAGS="%vdr_plugin_flags -DUSE_GRAPHTFT -DUSE_PINPLUGIN"
 %vdr_plugin_build
 
 %install

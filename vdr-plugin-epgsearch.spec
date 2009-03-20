@@ -3,7 +3,7 @@
 %define name	vdr-plugin-%plugin
 %define version	0.9.24
 %define prever	0
-%define rel	1
+%define rel	2
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name

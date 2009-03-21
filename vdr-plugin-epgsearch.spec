@@ -21,6 +21,7 @@ Source:		vdr-%plugin-%version.%prever.tgz
 %else
 Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
 %endif
+Patch0:		epgsearch-includes.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 Requires:	vdr-abi = %vdr_abi
@@ -67,6 +68,7 @@ epgsearch.
 %else
 %setup -q -n %plugin-%version
 %endif
+%patch0 -p1
 %vdr_plugin_prep
 
 chmod -x scripts/*.conf

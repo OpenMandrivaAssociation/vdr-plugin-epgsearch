@@ -22,8 +22,9 @@ Source:		vdr-%plugin-%version.%prever.tgz
 Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version.tgz
 %endif
 Patch0:		epgsearch-includes.patch
+Patch1:		epgsearch-const-char-gcc4.4.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.6.0
+BuildRequires:	vdr-devel >= 1.6.0-7
 Requires:	vdr-abi = %vdr_abi
 
 %description
@@ -69,6 +70,7 @@ epgsearch.
 %setup -q -n %plugin-%version
 %endif
 %patch0 -p1
+%patch1 -p1
 %vdr_plugin_prep
 
 chmod -x scripts/*.conf
@@ -99,7 +101,7 @@ param=--mailcmd=MAILCMD
 %build
 # -DUSE_GRAPHTFT needs alpha version of graphtft
 # -DUSE_PINPLUGIN does not work with current pin patch
-#VDR_PLUGIN_FLAGS="%vdr_plugin_flags -DUSE_GRAPHTFT -DUSE_PINPLUGIN"
+#VDR_PLUGIN_EXTRA_FLAGS="-DUSE_GRAPHTFT -DUSE_PINPLUGIN"
 %vdr_plugin_build
 
 %install

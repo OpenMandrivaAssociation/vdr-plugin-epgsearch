@@ -3,7 +3,7 @@
 %define name	vdr-plugin-%plugin
 %define version	0.9.24
 %define prever	0
-%define rel	3
+%define rel	4
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name
@@ -99,9 +99,8 @@ param=--mailcmd=MAILCMD
 %vdr_plugin_params_end
 
 %build
-# -DUSE_GRAPHTFT needs alpha version of graphtft
 # -DUSE_PINPLUGIN does not work with current pin patch
-#VDR_PLUGIN_EXTRA_FLAGS="-DUSE_GRAPHTFT -DUSE_PINPLUGIN"
+VDR_PLUGIN_EXTRA_FLAGS="-DUSE_GRAPHTFT"
 %vdr_plugin_build
 
 %install

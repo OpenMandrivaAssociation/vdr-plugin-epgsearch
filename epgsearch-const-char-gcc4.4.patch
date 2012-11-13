@@ -1,0 +1,79 @@
+Index: epgsearch-0.9.24/epgsearchsvdrp.c
+===================================================================
+--- epgsearch-0.9.24/epgsearchsvdrp.c
++++ epgsearch-0.9.24/epgsearchsvdrp.c	2009-07-27 17:53:37.992843458 +0300
+@@ -742,12 +742,13 @@
+    {
+       if (*Option) 
+       {
+-         char* pipePos = strchr(Option, '|');
++         const char* pipePos = strchr(Option, '|');
+          if (pipePos)
+          {
+-            *pipePos = 0;
+-            const char* oldName = Option;
+-            const char* newName = pipePos+1;
++            int index = pipePos - Option;
++            char* oldName = strdup(Option);
++	    *(oldName + index) = 0;
++            const char* newName = oldName + index + 1;
+             if (strlen(oldName) > 0 && strlen(newName) > 0)
+             {
+                cChannelGroup *changrp = ChannelGroups.GetGroupByName(Option);
+@@ -769,11 +770,14 @@
+                   }
+                   ChannelGroups.Save();
+                   SearchExts.Save();
+-                  return cString::sprintf("renamed channel group '%s' to '%s'", oldName, newName);
++                  cString strReturn = cString::sprintf("renamed channel group '%s' to '%s'", oldName, newName);
++		  free(oldName);
++		  return strReturn;
+ 
+                }		    
+                else
+                {
++                  free(oldName);
+                   ReplyCode = 901;
+                   return cString::sprintf("channel group '%s' not defined", Option);
+                }
+Index: epgsearch-0.9.24/epgsearchtools.c
+===================================================================
+--- epgsearch-0.9.24/epgsearchtools.c
++++ epgsearch-0.9.24/epgsearchtools.c	2009-07-27 17:54:19.291844759 +0300
+@@ -743,7 +743,7 @@
+    while(tmp)
+    {
+       // extract a single line
+-      char* lf = strchr(tmp, '\n');
++      const char* lf = strchr(tmp, '\n');
+       char* line = NULL;
+       if (lf)
+ 	line = strndup(tmp, lf-tmp);
+Index: epgsearch-0.9.24/menu_dirselect.c
+===================================================================
+--- epgsearch-0.9.24/menu_dirselect.c
++++ epgsearch-0.9.24/menu_dirselect.c	2009-07-27 17:42:24.007930988 +0300
+@@ -83,7 +83,7 @@
+ 	return 1;
+     do
+     {
+-	char* pos = strchr(szDir, '~');
++	const char* pos = strchr(szDir, '~');
+ 	if (pos)
+ 	{
+ 	    iLevel++;
+Index: epgsearch-0.9.24/searchtimer_thread.c
+===================================================================
+--- epgsearch-0.9.24/searchtimer_thread.c
++++ epgsearch-0.9.24/searchtimer_thread.c	2009-07-27 17:56:36.080093357 +0300
+@@ -565,8 +565,8 @@
+    if (!isempty(aux))
+    {
+       tmpaux = strdup(aux);
+-      char* begin = strstr(aux, "<epgsearch>");
+-      char* end = strstr(aux, "</epgsearch>");
++      const char* begin = strstr(aux, "<epgsearch>");
++      const char* end = strstr(aux, "</epgsearch>");
+       if (begin && end)
+       {
+          if (begin == aux) strcpy(tmpaux, ""); else strn0cpy(tmpaux, aux, begin-aux+1);

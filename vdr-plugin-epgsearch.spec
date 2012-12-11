@@ -145,3 +145,118 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_includedir}/vdr/%{plugin}
 
+
+
+%changelog
+* Tue Jul 28 2009 Anssi Hannula <anssi@mandriva.org> 0.9.24-4mdv2010.0
++ Revision: 402763
+- enable graphtft support
+
+* Tue Jul 28 2009 Anssi Hannula <anssi@mandriva.org> 0.9.24-3mdv2010.0
++ Revision: 401088
+- rebuild for new VDR
+- adapt for vdr compilation flags handling changes, bump buildrequires
+- fix build with gcc4.4 (const-char-gcc4.4.patch partially from upstream)
+
+* Sat Mar 21 2009 Anssi Hannula <anssi@mandriva.org> 0.9.24-2mdv2009.1
++ Revision: 359704
+- fix includes (includes.patch)
+- rebuild for new vdr
+
+* Sun May 11 2008 Anssi Hannula <anssi@mandriva.org> 0.9.24-1mdv2009.0
++ Revision: 205449
+- new version
+
+* Mon Apr 28 2008 Anssi Hannula <anssi@mandriva.org> 0.9.24-0.rc1.2mdv2009.0
++ Revision: 197924
+- rebuild for new vdr
+
+* Sat Apr 26 2008 Anssi Hannula <anssi@mandriva.org> 0.9.24-0.rc1.1mdv2009.0
++ Revision: 197659
+- 0.9.24-rc1
+- add vdr_plugin_prep
+- bump buildrequires on vdr-devel
+
+* Fri Jan 04 2008 Anssi Hannula <anssi@mandriva.org> 0.9.23-3mdv2008.1
++ Revision: 145083
+- rebuild for new vdr
+- adapt for changed vdr optflags scheme
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Mon Oct 29 2007 Anssi Hannula <anssi@mandriva.org> 0.9.23-2mdv2008.1
++ Revision: 103089
+- rebuild for new vdr
+
+* Fri Sep 07 2007 Anssi Hannula <anssi@mandriva.org> 0.9.23-1mdv2008.0
++ Revision: 81919
+- 0.9.23
+- update URL
+- build with pin plugin support
+- adapt license tag to the new policy
+
+* Sun Jul 08 2007 Anssi Hannula <anssi@mandriva.org> 0.9.21-5mdv2008.0
++ Revision: 49995
+- rebuild for new vdr
+
+* Sun Jul 08 2007 Anssi Hannula <anssi@mandriva.org> 0.9.21-4mdv2008.0
++ Revision: 49908
+- provide services.h in epgsearch-devel subpackage
+
+* Thu Jun 21 2007 Anssi Hannula <anssi@mandriva.org> 0.9.21-3mdv2008.0
++ Revision: 42081
+- rebuild for new vdr
+
+* Sat May 05 2007 Anssi Hannula <anssi@mandriva.org> 0.9.21-2mdv2008.0
++ Revision: 22748
+- rebuild for new vdr
+
+* Tue May 01 2007 Anssi Hannula <anssi@mandriva.org> 0.9.21-1mdv2008.0
++ Revision: 19868
+- 0.9.21
+- provide more scripts in bindir
+
+
+* Fri Mar 02 2007 Anssi Hannula <anssi@mandriva.org> 0.9.20-1mdv2007.0
++ Revision: 130878
+- 0.9.20
+
+* Tue Dec 05 2006 Anssi Hannula <anssi@mandriva.org> 0.9.19-2mdv2007.1
++ Revision: 90916
+- rebuild for new vdr
+
+* Fri Nov 03 2006 Anssi Hannula <anssi@mandriva.org> 0.9.19-1mdv2007.1
++ Revision: 76359
+- 0.9.19
+- update filelist and configuration file
+
+* Tue Oct 31 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17d-5mdv2007.1
++ Revision: 73996
+- rebuild for new vdr
+- Import vdr-plugin-epgsearch
+
+* Thu Sep 07 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17d-4mdv2007.0
+- rebuild for new vdr
+
+* Fri Aug 25 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17d-3mdv2007.0
+- fix mangled description
+
+* Thu Aug 24 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17d-2mdv2007.0
+- stricter abi requires
+
+* Wed Aug 09 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17d-1mdv2007.0
+- 0.9.17d
+
+* Mon Aug 07 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17c-3mdv2007.0
+- rebuild for new vdr
+
+* Wed Jul 26 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17c-2mdv2007.0
+- rebuild for new vdr
+
+* Tue Jul 11 2006 Anssi Hannula <anssi@mandriva.org> 0.9.17c-1mdv2007.0
+- initial Mandriva release
+

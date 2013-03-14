@@ -3,7 +3,7 @@
 %define name	vdr-plugin-%plugin
 %define version	0.9.24
 %define prever	0
-%define rel	4
+%define rel	5
 
 Summary:	VDR plugin: search the EPG for repeats and more
 Name:		%name
@@ -23,7 +23,6 @@ Source:		http://winni.vdr-developer.org/epgsearch/downloads/vdr-%plugin-%version
 %endif
 Patch0:		epgsearch-includes.patch
 Patch1:		epgsearch-const-char-gcc4.4.patch
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0-7
 Requires:	vdr-abi = %vdr_abi
 
@@ -104,7 +103,6 @@ VDR_PLUGIN_EXTRA_FLAGS="-DUSE_GRAPHTFT"
 %vdr_plugin_build
 
 %install
-rm -rf %{buildroot}
 %vdr_plugin_install
 
 make install-doc MANDIR=%{buildroot}%{_mandir}
@@ -116,15 +114,6 @@ install -d -m755 %{buildroot}%{_includedir}/vdr/%{plugin}
 install -m644 services.h %{buildroot}%{_includedir}/vdr/%{plugin}
 
 cat %plugin.vdr conflictcheckonly.vdr epgsearchonly.vdr quickepgsearch.vdr > combined.vdr
-
-%clean
-rm -rf %{buildroot}
-
-%post
-%vdr_plugin_post %plugin
-
-%postun
-%vdr_plugin_postun %plugin
 
 %files -f combined.vdr
 %defattr(-,root,root)

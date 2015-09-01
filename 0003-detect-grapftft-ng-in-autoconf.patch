@@ -1,0 +1,26 @@
+From d61e3ac14b2dbe761770068f55f954e3db51070e Mon Sep 17 00:00:00 2001
+From: Christian Wieninger <cwieninger@gmx.de>
+Date: Sun, 18 Aug 2013 00:16:30 +0200
+Subject: [PATCH 3/4] detect grapftft*ng* in autoconf
+
+---
+ Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 6bb1b96..8baad7d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -90,6 +90,9 @@ ifeq ($(AUTOCONFIG),1)
+ 	ifeq (exists, $(shell test -e ../graphtft && echo exists))
+ 		USE_GRAPHTFT = 1
+ 	endif
++	ifeq (exists, $(shell test -e ../graphtftng && echo exists))
++		USE_GRAPHTFT = 1
++	endif
+ endif
+ 
+ ### The version number of VDR's plugin API:
+-- 
+1.8.1.5
+

@@ -1,0 +1,62 @@
+From e74817a510484b5e45d872e811323d99f53110ff Mon Sep 17 00:00:00 2001
+From: Christian Wieninger <cwieninger@gmx.de>
+Date: Thu, 18 Apr 2013 19:51:38 +0200
+Subject: [PATCH 2/4] label favorites menu for graphtft with
+ 'MenuEpgsFavorites'
+
+---
+ menu_favorites.c | 22 ++++++++++++++++++++++
+ menu_favorites.h |  4 ++++
+ 2 files changed, 26 insertions(+)
+
+diff --git a/menu_favorites.c b/menu_favorites.c
+index 4ff86d4..d2dce45 100644
+--- a/menu_favorites.c
++++ b/menu_favorites.c
+@@ -37,6 +37,28 @@ cMenuFavorites::cMenuFavorites()
+    BuildList();
+ }
+ 
++#ifdef USE_GRAPHTFT
++const char* cMenuFavorites::MenuKind()
++{
++  return "MenuEpgsFavorites";
++}
++
++void cMenuFavorites::Display(void)
++{
++   cOsdMenu::Display();
++
++   if (Count() > 0)
++   {
++      int i = 0;
++
++      for (cOsdItem *item = First(); item; item = Next(item))
++         cStatus::MsgOsdEventItem(!item->Selectable() ? 0 :
++                                  ((cMenuSearchResultsItem*)item)->event,
++                                  item->Text(), i++, Count());
++   }
++}
++#endif /* GRAPHTFT */
++
+ bool cMenuFavorites::BuildList()
+ {
+    Clear();
+diff --git a/menu_favorites.h b/menu_favorites.h
+index 91a25a7..5adf9f7 100644
+--- a/menu_favorites.h
++++ b/menu_favorites.h
+@@ -35,6 +35,10 @@ class cMenuFavorites : public cMenuSearchResults {
+     cMenuFavorites();
+     virtual eOSState ProcessKey(eKeys Key);
+     virtual void SetHelpKeys(bool Force=false);
++#ifdef USE_GRAPHTFT
++  virtual const char* MenuKind();
++  virtual void Display(void);
++#endif
+ };
+ 
+ 
+-- 
+1.8.1.5
+

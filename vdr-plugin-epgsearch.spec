@@ -67,7 +67,7 @@ epgsearch.
 %else
 %setup -q -n %plugin-%{version}
 %endif
-%apply_patches
+%autopatch -p1
 %vdr_plugin_prep
 
 chmod -x scripts/*.conf

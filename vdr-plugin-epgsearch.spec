@@ -11,7 +11,7 @@ Release:	2
 %endif
 Group:		Video
 License:	GPL+
-URL:		http://winni.vdr-developer.org/epgsearch/index_eng.html
+URL:		https://winni.vdr-developer.org/epgsearch/index_eng.html
 %if %prever
 Source:		vdr-%plugin-%{version}.%prever.tgz
 %else

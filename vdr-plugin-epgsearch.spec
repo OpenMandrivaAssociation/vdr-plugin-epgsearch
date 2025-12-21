@@ -21,6 +21,7 @@ Patch0:         0001-fix-summary-comparison-when-checking-for-repeats-was.patch
 Patch1:         0002-label-favorites-menu-for-graphtft-with-MenuEpgsFavor.patch
 Patch2:		0003-detect-grapftft-ng-in-autoconf.patch
 Patch3:		0004-fix-for-pin-patch.patch
+BuildRequires:	make
 BuildRequires:	vdr-devel >= 1.6.0-7
 BuildRequires:  pcre-devel
 Requires:	vdr-abi = %vdr_abi
